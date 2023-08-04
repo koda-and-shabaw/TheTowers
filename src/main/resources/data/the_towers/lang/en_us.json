@@ -11,6 +11,7 @@
 	"text.the_towers.guide.craft_stuff": "Craft your stuff using the materials in the chests!",
 	"text.the_towers.guide.jumping_into_pool": "Jumping into an team's pool will remove a health point from that team.",
 	"text.the_towers.guide.protect_your_pool": "Be sure to protect your pool carefully!",
+	"text.the_towers.guide.press_to_ready": "Step on the plate to indicate that you are ready !",
 	"text.the_towers.health_removed": "%s removed a health point from the %s team!",
 	"text.the_towers.health_stole": "%s stole a health point from the %s team!",
 	"text.the_towers.nobody_won": "Nobody has won!",

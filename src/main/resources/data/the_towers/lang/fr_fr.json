@@ -11,6 +11,7 @@
 	"text.the_towers.guide.craft_stuff": "Fabriquez vos armes et outils à l'aide des matériaux dans les coffres !",
 	"text.the_towers.guide.jumping_into_pool": "Sauter dans la piscine d'une équipe adverse leur retira un point de vie.",
 	"text.the_towers.guide.protect_your_pool": "Faites en sortes de bien protéger votre piscine !",
+	"text.the_towers.guide.press_to_ready": "Placez-vous sur la plaque pour indiquer que vous êtes prêt.",
 	"text.the_towers.health_removed": "%s a retiré un point de vie de l'équipe %s !",
 	"text.the_towers.health_stole": "%s a volé un point de vie de l'équipe %s !",
 	"text.the_towers.nobody_won": "Personne n'a gagné !",

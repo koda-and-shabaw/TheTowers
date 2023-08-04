@@ -1,9 +1,9 @@
-{
+	{
 	"type": "the_towers:the_towers",
 	"translation": "game.the_towers.classic.four_teams",
 	"map": "the_towers:classic/four_teams",
 	"players": {
-		"min": 1,
+		"min": 16,
 		"threshold": 16,
 		"max": 32
 	},

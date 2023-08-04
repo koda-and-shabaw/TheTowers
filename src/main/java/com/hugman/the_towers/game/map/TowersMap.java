@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public record TowersMap(MapTemplate template, Vec3d spawn, Vec3d rules, List<BlockBounds> protectedBounds, List<Generator> generators, Map<GameTeamKey, TeamRegion> teamRegions) {
+public record TowersMap(MapTemplate template, Vec3d spawn, Vec3d rules, Vec3d ready, List<BlockBounds> protectedBounds, List<Generator> generators, Map<GameTeamKey, TeamRegion> teamRegions) {
 	/**
 	 * Creates the map from a map template by reading its metadata.
 	 */
@@ -43,6 +43,15 @@ public record TowersMap(MapTemplate template, Vec3d spawn, Vec3d rules, List<Blo
 		else {
 			TheTowers.LOGGER.warn("Missing rules display position, set to spawn position");
 		}
+		Vec3d ready = new Vec3d(0, 50, 0);
+		BlockBounds readyBounds = metadata.getFirstRegionBounds("ready");
+		if(readyBounds != null) {
+			ready = readyBounds.center();
+		}
+		else {
+			TheTowers.LOGGER.warn("Missing ready position, set to default [0 50 0]");
+		}
+
 
 		List<BlockBounds> protectedBounds = metadata.getRegionBounds("protected").collect(Collectors.toList());
 		List<Generator> generators = new ArrayList<>();
@@ -57,7 +66,7 @@ public record TowersMap(MapTemplate template, Vec3d spawn, Vec3d rules, List<Blo
 			teamRegions.put(team.key(), region);
 		}
 
-		return new TowersMap(template, spawn, rules, protectedBounds, generators, teamRegions);
+		return new TowersMap(template, spawn, rules, ready, protectedBounds, generators, teamRegions);
 	}
 
 	public ChunkGenerator asGenerator(MinecraftServer server) {

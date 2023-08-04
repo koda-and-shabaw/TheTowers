@@ -3,7 +3,7 @@
 	"translation": "game.the_towers.classic.two_teams",
 	"map": "the_towers:classic/two_teams",
 	"players": {
-		"min": 1,
+		"min": 8,
 		"threshold": 8,
 		"max": 16
 	},

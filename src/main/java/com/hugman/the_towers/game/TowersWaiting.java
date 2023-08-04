@@ -6,6 +6,7 @@ import com.hugman.the_towers.game.map.TowersMapGenerator;
 import eu.pb4.holograms.api.Holograms;
 import eu.pb4.holograms.api.holograms.AbstractHologram;
 import eu.pb4.holograms.api.holograms.WorldHologram;
+import fr.koda_and_shabaw.plasmid.lobby.GameWaitingReadyLobby;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
@@ -42,7 +43,7 @@ public record TowersWaiting(GameSpace gameSpace, ServerWorld world, TowersMap ma
 				.setGenerator(map.asGenerator(context.server()));
 
 		return context.openWithWorld(worldConfig, (activity, world) -> {
-			GameWaitingLobby.addTo(activity, config.playerConfig());
+			GameWaitingReadyLobby.addTo(activity, config.playerConfig(), map);
 
 			TeamSelectionLobby teamSelection = TeamSelectionLobby.addTo(activity, config.teamConfig());
 			TowersWaiting waiting = new TowersWaiting(activity.getGameSpace(), world, map, context.config(), teamSelection);
@@ -74,6 +75,16 @@ public record TowersWaiting(GameSpace gameSpace, ServerWorld world, TowersMap ma
 		WorldHologram hologram = Holograms.create(this.world, pos, GUIDE_LINES);
 		hologram.setAlignment(AbstractHologram.VerticalAlign.TOP);
 		hologram.show();
+
+		Text[] GUIDE_LINES_READY = {
+				Text.translatable("text.the_towers.guide.press_to_ready").formatted(Formatting.YELLOW, Formatting.BOLD),
+		};
+
+		Vec3d pos_ready = this.map.ready();
+		this.world.getChunk(BlockPos.ofFloored(pos_ready));
+		WorldHologram hologram_ready = Holograms.create(this.world, pos_ready, GUIDE_LINES_READY);
+		hologram_ready.setAlignment(AbstractHologram.VerticalAlign.TOP);
+		hologram_ready.show();
 	}
 
 	private GameResult requestStart() {
